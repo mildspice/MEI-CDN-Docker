@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  server: 
+    build: server/.
+    volumes:
+      - ./server/serverdata:/serverdata
+    networks:
+      - rmi
+  client:
+    build: client/.
+    depends_on:
+      - server
+    volumes:
+      - ./client/clientdata:/clientdata
+    networks:
+      - rmi
+    links:
+      - "server:server"
+
+networks:
+  rmi:
+    driver: bridge
