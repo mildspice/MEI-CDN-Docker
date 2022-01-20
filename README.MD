@@ -1,7 +1,9 @@
 # MEI | CDN 2021-2022
 RMI file transfer with Docker containers.
 
-## Build and Execute
+## Build and Execute with docker-compose
+
+*If you want to build each image individually, check the README.md files on the client and server directories*
 
 - Make sure to have [Docker](https://www.docker.com/get-started) installed on your machine.
 

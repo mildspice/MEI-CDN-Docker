@@ -21,9 +21,9 @@ ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 
 WORKDIR /app
 
-ADD src ./src
-ADD pom.xml .
-ADD run.sh .
+COPY ../src ./src
+COPY ../pom.xml .
+COPY run_maven.sh run.sh
 
 VOLUME /clientdata
 
