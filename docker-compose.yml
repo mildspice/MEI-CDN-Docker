@@ -2,13 +2,19 @@ version: "3.9"
 
 services:
   server: 
-    build: server/.
+    container_name: rmi_server_maven
+    build:
+      context: server/.
+      dockerfile: Dockerfile_maven
     volumes:
       - ./server/serverdata:/serverdata
     networks:
       - rmi
   client:
-    build: client/.
+    container_name: rmi_client_maven
+    build:
+      context: client/.
+      dockerfile: Dockerfile_maven
     depends_on:
       - server
     volumes:
