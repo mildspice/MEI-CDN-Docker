@@ -4,6 +4,7 @@ FROM openjdk:latest
 WORKDIR /app
 
 COPY target/rmi-client-1.0.jar target/
+COPY target/classes target/
 COPY run.sh .
 
 VOLUME /clientdata
