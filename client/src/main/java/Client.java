@@ -20,7 +20,7 @@ public class Client {
       FileClient fc = new FileClient();
       File file = new File("/clientdata/"+Instant.now().toEpochMilli()+".txt");
       fc.downloadFileFromServer(files, file.getAbsolutePath());   
-
+      System.out.println("Use Ctrl+C to close the application container");
       while(true);
 
     } catch (NotBoundException | MalformedURLException err) {

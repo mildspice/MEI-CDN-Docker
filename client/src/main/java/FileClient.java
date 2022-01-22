@@ -19,13 +19,13 @@ public class FileClient {
             throws RemoteException {
         try {
             HashMap<byte[], byte[]> bytes =  fServer.downloadFileFromServer();
-            System.out.print("Data received from server, proceeding to verify");
+            System.out.println("Data received from server, proceeding to verify with Checksum");
             byte[] checksum = (byte[]) bytes.keySet().toArray()[0];
             byte[] data = bytes.get(checksum);
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] checksumLocal = md.digest(data);
             if(!MessageDigest.isEqual(checksum, checksumLocal)){
-                System.out.println("NOT SAME! CHECKSUM FAILED ばか!");
+                System.out.println("NOT SAME! CHECKSUM FAILED ばか! \nAborting download of file");
                 return null;
             }
             System.out.println("Checksum validated, data is intact");
