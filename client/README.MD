@@ -15,11 +15,11 @@ Simple IRC Client - Using Java RMI
     > docker volume create clientvol
 
 - Build the client app image:
-    > docker build -t rmi-client:1.0 .
+    > docker build -f Dockerfile -t rmi-client:1.0 .
 
-- Run a container using the image created. Additionally, **configure a volume**, **add the container to the created network** and **create a link to 'server'**:
-    > docker run -it --name rmi-client -v clientvol:/clientdata --network rmi --link rmi-server:server rmi-client:1.0
+- Run a container using the image created. Additionally, **link the container to the volume and network created before** and **create a link to 'server'**:
+    > docker run -it --attach STDIN --attach STDOUT --attach STDERR --name rmi-client -v clientvol:/clientdata --network rmi --link rmi-server:server rmi-client:1.0
 
-```diff
-! MAKE SURE TO RUN THE CLIENT BEFORE THE SERVER
-```
+<br>
+
+### NOTE: Make sure that the server container is up and running before starting the client!

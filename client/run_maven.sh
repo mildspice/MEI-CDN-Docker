@@ -1,7 +1,7 @@
 #!/bin/bash
-if [ -e target/ ] 
+if [ -e target/ ]
 then
-    if $build_maven 
+    if $build_maven
     then
         mvn clean install package
     fi

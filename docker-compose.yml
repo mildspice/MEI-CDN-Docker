@@ -13,6 +13,8 @@ services:
       - rmi
   client:
     container_name: rmi-client-maven
+    tty: true
+    stdin_open: true
     image: rmi-client-maven
     build:
       context: client/.

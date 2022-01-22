@@ -3,6 +3,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.time.Instant;
+import java.util.Scanner;
 
 public class Client {
   public static void main(String args[]) throws Exception {
