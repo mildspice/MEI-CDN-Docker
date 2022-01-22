@@ -5,8 +5,11 @@ Simple IRC Client - Using Java RMI
 
 - Make sure to open a terminal on this README directory:
 
-- First, create a network named 'rmi' with a 'bridge' driver if none exists:
-    > docker network create --attachable --driver bridge rmi
+- First, build and package the app, with maven:
+    > mvn clean install package
+
+- Then, create a network named 'rmi' with a 'bridge' driver if none exists:
+    > docker network create --driver bridge rmi
 
 - Then, create a volume for the client:
     > docker volume create clientvol
