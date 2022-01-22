@@ -40,8 +40,7 @@ public class Server extends UnicastRemoteObject {
     // System.setSecurityManager(new RMISecurityManager());
     startRmiRegistry(Integer.parseInt(port)); 
 
-    FileManagement fileManagement = new FileManagement();
-    FileServer fileServer = new FileServer(fileManagement);
+    FileServer fileServer = new FileServer();
     Naming.bind("rmi://" + host + "/FileServer", fileServer);
     System.out.println("> Successfully registered RMI interface - rmi://" + host + "/FileServer");
   }
