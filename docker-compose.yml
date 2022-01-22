@@ -27,9 +27,11 @@ services:
       - rmi
     links:
       - "server:server"
+
 networks:
   rmi:
     driver: bridge
+
 volumes:
   clientvol:
     name: clientvol
