@@ -1,9 +1,8 @@
 import java.rmi.*;
-import java.util.List;
+import java.util.HashMap;
 
 public interface FileServerInterface extends Remote {
-	
-	public boolean uploadFileToServer(byte[] data, String serverPath, int length) throws RemoteException;
-	public byte[] downloadFileFromServer(String serverPath) throws RemoteException;
-	public List<String> listAllFiles() throws RemoteException;
+
+	public HashMap<byte[], byte[]> downloadFileFromServer() throws RemoteException;
+
 }
