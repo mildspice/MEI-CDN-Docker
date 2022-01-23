@@ -1,13 +1,11 @@
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
-import java.rmi.server.UnicastRemoteObject;
 
-public class Server extends UnicastRemoteObject {
-
-  public Server() throws RemoteException {
-    super();
-  }
+public class Server {
+  public final static String DEFAULT_HOST = "localhost";
+  public final static Integer DEFAULT_PORT = 1099;
+  public final static String VOLUME_DIR = "serverdata";
 
   private static void startRmiRegistry(int port) {
     try {
@@ -20,25 +18,25 @@ public class Server extends UnicastRemoteObject {
   }
 
   public static void main (String args[]) throws Exception {
-    String host = "localhost", port = "1099";
+    String host = DEFAULT_HOST;
+    Integer port = DEFAULT_PORT;
 		if (args.length == 2) {
 			host = args[0];
       try {
-        Integer.parseInt(port);
-        port = args[1];
+        port = Integer.parseInt(args[1]);
       } catch (NumberFormatException ignored) {
-        System.out.println("> Invalid port. Using " + host + ":1099 as default ...");
+        System.out.println("> Invalid port. Using '" + host + ":" + DEFAULT_PORT + "' as default ...");
       }
 		} else if (args.length == 1) {
       host = args[0];
-			System.out.println("> No port specified. Using " + host + ":1099 as default ...");
+			System.out.println("> No port specified. Using '" + host + ":" + DEFAULT_PORT + "' as default ...");
 		} else {
-			System.out.println("> No host or port specified. Using 'localhost:1099' as default ...");
+			System.out.println("> No host or port specified. Using '" + DEFAULT_HOST + ":" + DEFAULT_PORT + "' as default ...");
 		}
 
     // # not required in Java 14
     // System.setSecurityManager(new RMISecurityManager());
-    startRmiRegistry(Integer.parseInt(port)); 
+    startRmiRegistry(port); 
 
     FileServer fileServer = new FileServer();
     Naming.bind("rmi://" + host + "/FileServer", fileServer);

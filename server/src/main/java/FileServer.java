@@ -21,7 +21,7 @@ public class FileServer extends UnicastRemoteObject implements FileServerInterfa
     }
 
     private HashMap<byte[], byte[]> generateFile(){
-        File file = new File("/serverdata/"+Instant.now().toEpochMilli()+".txt");
+        File file = new File(String.format("/%s/%s", Server.VOLUME_DIR, Instant.now().toEpochMilli() + ".txt"));
         RandomAccessFile raf;
         HashMap<byte[], byte[]> bytes = new HashMap<>();
         byte[] theMD5digest = null;

@@ -9,11 +9,7 @@ import java.util.HashMap;
 
 public class FileClient {
 
-    protected FileClient() throws RemoteException {
-        super();
-    }
-
-    public File downloadFileFromServer(FileServerInterface fServer, String clientFileName)
+    public static File downloadFileFromServer(FileServerInterface fServer, String clientFileName)
             throws RemoteException {
         try {
             HashMap<byte[], byte[]> bytes =  fServer.downloadFileFromServer();

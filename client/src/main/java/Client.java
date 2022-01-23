@@ -3,24 +3,27 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.time.Instant;
-import java.util.Scanner;
 
 public class Client {
+  public final static String DEFAULT_HOST = "localhost";
+  public final static String VOLUME_DIR = "clientdata";
+
   public static void main(String args[]) throws Exception {
-    String host = "localhost";
+    String host = DEFAULT_HOST;
     if (args.length >= 1) {
       host = args[0];
     } else {
-      System.out.println("> No host was specified. Using 'localhost' as default ...");
+      System.out.println("> No host was specified. Using " + DEFAULT_HOST + " as default ...");
     }
 
     try {
-      FileServerInterface files = (FileServerInterface) Naming.lookup("rmi://" + host + "/FileServer");
+      FileServerInterface filesStub = (FileServerInterface) Naming.lookup("rmi://" + host + "/FileServer");
       System.out.println("> Successfully connected to RMI registry: rmi://" + host + "/FileServer");
-      FileClient fc = new FileClient();
-      File file = new File("/clientdata/"+Instant.now().toEpochMilli()+".txt");
-      fc.downloadFileFromServer(files, file.getAbsolutePath());   
-      System.out.println("Use Ctrl+C to close the application container");
+
+      File file = new File(String.format("/%s/%s", VOLUME_DIR, Instant.now().toEpochMilli() + ".txt"));
+      FileClient.downloadFileFromServer(filesStub, file.getAbsolutePath());
+
+      System.out.println("Use Ctrl+C to close the application ...");
       while(true);
 
     } catch (NotBoundException | MalformedURLException err) {
