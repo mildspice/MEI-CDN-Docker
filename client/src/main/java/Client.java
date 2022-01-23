@@ -42,7 +42,7 @@ public class Client {
       }
 
     } catch (NotBoundException | MalformedURLException err) {
-      System.out.println("> Server seems to be unavailable. NOT FOUND | rmi://" + host + "/AuthServer");
+      System.out.println("> Server seems to be unavailable ...");
       err.printStackTrace();
     }
   }
