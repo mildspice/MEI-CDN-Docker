@@ -18,5 +18,16 @@ RMI file transfer with Docker containers.
 
     *this command is enough to make everything running, though it is recomended to check on other relevant ``docker-compose`` command options, e.g. for building only one service at a time, ...*
 
+- You can chose which image you want to create, based on the existing Docker files by updating the configuration, as demonstrated here:
+
+    ```
+    services:
+        service-name:
+            ...
+            build:
+                ...
+                dockerfile: Dockerfile-maven <-- 
+    ```
+
 - To open an STDIN to interact with the client-container (make sure the container has started):
     > docker attach rmi-client-maven

@@ -5,7 +5,7 @@ Simple IRC Server - Using Java RMI
 
 - Make sure to open a terminal on this README directory:
 
-- First, build and package the app, with maven:
+- First, build and package the app, with maven (you can skip this if you chose to use the ``Dockerfile-maven`` docker file):
     > mvn clean install package
 
 - Then, create a network named 'rmi' with a 'bridge' driver if none exists:
@@ -16,6 +16,10 @@ Simple IRC Server - Using Java RMI
 
 - Build the client app image:
     > docker build -f Dockerfile -t rmi-server:1.0 .
+
+    or
+    
+    > docker build -f Dockerfile-maven -t rmi-server:1.0 .
 
 - Run a container using the image created. Additionally, **link the container to the volume and network created before**:
     > docker run -it --name rmi-server -v servervol:/serverdata --network rmi rmi-server:1.0
